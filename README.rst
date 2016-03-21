@@ -14,7 +14,22 @@ Zabbix Alert Notification Script for Slack. by pure python.
 Install
 -----------------------
 
-(TBC)
+In your zabbix server,
+
+.. sourcecode:: sh
+
+    $ wget https://raw.githubusercontent.com/laughk/zbx2slack-alert-notify/master/zbx2slack-alert-notify.py
+    $ chmod +x zbx2slack-alert-notify.py
+
+or if you can use ``git``,
+
+.. sourcecode:: sh
+
+    $ git clone https://github.com/laughk/zbx2slack-alert-notify.git
+    $ chmod +x zbx2slack-alert-notify/zbx2slack-alert-notify.git
+
+
+(if necessary, use ``sudo``. )
 
 
 set this script your zabbix server.
