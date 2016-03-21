@@ -112,7 +112,6 @@ class noticeInfo(object):
         self.attachment_color  = self._gen_attachment_color()
         self.pretext           = self._gen_pretext()
         self.attachment_fields = self._gen_attachment_fields()
-        self.graph_url         = self._gen_graph_url()
 
         self._payload = self._gen_payload()
 
@@ -191,7 +190,6 @@ class noticeInfo(object):
                 'title': self.trigger_name,
                 'title_link': self.trigger_url,
                 'pretext': self.pretext,
-                'image_url': self.graph_url
             }]
         })
 
