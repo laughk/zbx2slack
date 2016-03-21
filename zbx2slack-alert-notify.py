@@ -9,7 +9,7 @@ zbx2slack-alert-notify.py
 Zabbix Alert Notification Script for Slack. by pure python.
 
 - Can use by "Remote command". But can't use by "Media type".
-- if use by python2.6- (like CentOS6.x), install ``argparse`` module.  ex, 
+- if use by python2.6 (like CentOS6.x), install ``argparse`` module.  ex, 
 
   .. sourcecode:: sh
 
@@ -96,6 +96,7 @@ Kei Iwasaki <me@laughk.org>
 import os, sys
 import re
 import argparse
+import json
 
 try:
     '''for python3.x'''
@@ -103,12 +104,6 @@ try:
 except ImportError:
     '''for python2.x'''
     import urllib2 as request
-
-try:
-    import json
-except ImportError:
-    '''for python2.4'''
-    import simplejson as json
 
 
 class noticeInfo(object):
