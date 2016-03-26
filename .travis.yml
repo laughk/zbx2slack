@@ -9,4 +9,4 @@ install:
   # for python2.6
   - if [[ $(python -V | awk '{print $NF}')$ =~ ^2.6 ]]; then pip install argparse; fi
 
-script: nosetest -v
+script: nosetests -v
