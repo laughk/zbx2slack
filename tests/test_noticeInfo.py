@@ -110,12 +110,12 @@ class testNoticeInfo(unittest.TestCase):
 
         expected = [
             {
-                'title': r'{HOST.NAME1} - **{ITEM.NAME1}** [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID1}|Graph>]',
-                'value': r'"{ITEM.KEY1}" is "{ITEM.VALUE1}"'
+                'title': r'{HOST.NAME1} - **{ITEM.NAME1}**',
+                'value': r'"{ITEM.KEY1}" is "{ITEM.VALUE1}" [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID1}|Graph>]'
             },
             {
-                'title': r'{HOST.NAME2} - **{ITEM.NAME2}** [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID2}|Graph>]',
-                'value': r'"{ITEM.KEY2}" is "{ITEM.VALUE2}"'
+                'title': r'{HOST.NAME2} - **{ITEM.NAME2}**',
+                'value': r'"{ITEM.KEY2}" is "{ITEM.VALUE2}" [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID2}|Graph>]'
             }
         ]
         result = _noticeInfo._gen_attachment_fields()
@@ -136,13 +136,13 @@ class testNoticeInfo(unittest.TestCase):
                     'pretext': ':ghost::ghost: UNKNOWN :ghost::ghost:',
                     'fields': [
                             {
-                                'title': r'{HOST.NAME1} - **{ITEM.NAME1}** [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID1}|Graph>]',
-                                'value': r'"{ITEM.KEY1}" is "{ITEM.VALUE1}"'
+                                'title': r'{HOST.NAME1} - **{ITEM.NAME1}**',
+                                'value': r'"{ITEM.KEY1}" is "{ITEM.VALUE1}" [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID1}|Graph>]'
                             },
-                            {   'title': r'{HOST.NAME2} - **{ITEM.NAME2}** [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID2}|Graph>]',
-                                'value': r'"{ITEM.KEY2}" is "{ITEM.VALUE2}"'
+                            {   'title': r'{HOST.NAME2} - **{ITEM.NAME2}**',
+                                'value': r'"{ITEM.KEY2}" is "{ITEM.VALUE2}" [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID2}|Graph>]'
                             }
-                        ]
+                        ],
                     }]
                 }
 
