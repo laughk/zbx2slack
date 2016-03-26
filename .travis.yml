@@ -1,0 +1,16 @@
+language: python
+python:
+- '2.6'
+- '2.7'
+- '3.3'
+- '3.4'
+- '3.5'
+install:
+- if [[ $(python -V 2>&1 | awk '{print $NF}') =~ ^2.6 ]]; then pip install argparse;
+  fi
+- if [[ $(python -V 2>&1 | awk '{print $NF}') =~ ^2.6 ]]; then pip install datadiff;
+  fi
+script: nosetests -v
+notifications:
+  slack:
+    secure: 1VMOQRCNeLHE4SF7QgUn2thK4/T9slsO1i/wVpi/yaiyTp4rTB80DWZDP5zS7fHpzJl+fGGIsedPk24iYXL4qtF2rvCrgwQqbp690ZmgVtr6uVbIhRPOCnQe6tJ3AfzsSyl8jBaqpTZ1gQEqIXARrPSOgmkklZauKpohvtSqpi4PXfWqTLXxcSzC8lt7knBm1UDno14cs1uG29EN3IlLhwluJsRiunkElgG/fX8WF80o9+EY4cYcq8/0AdXh33KsXeqB+fA/S0S1ifc3s1YmnNnu7uFs+cGywSFoFhhFZOZ+I1iXU67SqpzaTIk5kp0bNxbwZiNAJ3vySk7YPxDLi4Lgz3M3H43XUM7MyHnkoNmf+7MchP+4a7TD/q6e9275+4xAZiqz+/bIDdn17cFnKSyMOz1v2Ki/kALvCgZAeMaIKSV2VA7YD7BPja6q4Z5sL/qlXJ3RCLnsDxZekd1GHJExgJVlwIioLu8PZKSH2WEKRJyr4saFSLGqdU+DWMMH457H3TGbclIpc9Nlej3ziORXZLeyN/AtbOJrTV8DKD4KEoGWUYnVlhUpoyRJAFgpO9QVCTfAhC7P6wuqUX/sVpObEaEEmjm2QFaQzRsslhlKV2RmqBkit8WwOuFhFXWITyNx9dkPjdyP63C76RUQaiyijeXJklNLgZ/SNlGnsvc=
