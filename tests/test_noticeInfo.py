@@ -1,3 +1,4 @@
+import sys
 import unittest
 import json
 
@@ -35,6 +36,11 @@ class testNoticeInfo(unittest.TestCase):
             '{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}|{ITEM.ID2}',
             '*UNKNOWN*|*UNKNOWN*|*UNKNOWN*|*UNKNOWN*|*UNKNOWN*'
         ]
+
+        # for python2.6
+        if not hasattr(self, 'assertSequenceEqual'):
+            from datadiff.tools import assert_equal
+            self.assertSequenceEqual = assert_equal
 
     def setDown(self):
         pass

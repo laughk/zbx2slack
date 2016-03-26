@@ -7,6 +7,9 @@ python:
   - '3.5'
 install:
   # for python2.6
-  - if [[ $(python -V | awk '{print $NF}')$ =~ ^2.6 ]]; then pip install argparse; fi
+  #    scripts
+  - if [[ $(python -V | awk '{print $NF}') =~ ^2.6 ]]; then pip install argparse; fi
+  #    unittest
+  - if [[ $(python -V | awk '{print $NF}') =~ ^2.6 ]]; then pip install datadiff; fi
 
 script: nosetests -v
