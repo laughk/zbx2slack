@@ -4,6 +4,7 @@ zbx2slack-alert-notify.py
 .. image:: https://travis-ci.org/laughk/zbx2slack-alert-notify.svg?branch=master
     :target: https://travis-ci.org/laughk/zbx2slack-alert-notify
 
+
 Zabbix Alert Notification Script for Slack. by pure python.
 
 - Can use by "Remote command". But can't use by "Media type".
@@ -12,6 +13,14 @@ Zabbix Alert Notification Script for Slack. by pure python.
   .. sourcecode:: sh
 
      $  sudo yum install python-argparse
+
+
+Screenshot
+------------------
+
+Notification example.
+
+.. image:: docs/images/screenshot1.png
 
 
 Install
