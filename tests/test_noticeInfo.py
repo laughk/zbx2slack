@@ -78,7 +78,7 @@ class testNoticeInfo(unittest.TestCase):
         test_args = self._args
 
         test_case = {
-            'PROBLEM': ':boom: A problem occured ',
+            'PROBLEM': ':boom: A problem occurred ',
             'OK': ':white_check_mark: A problem recovered :+1:',
             'other': ':ghost::ghost: UNKNOWN :ghost::ghost:'
         }
