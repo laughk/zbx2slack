@@ -117,7 +117,7 @@ class noticeInfo(object):
         self.trigger_severity  = args.trigger_severity
         self.event_id          = args.event_id
         self._item_text_list   = args.item
-        self.items             = self._gen_items
+        self.items             = self._gen_items()
 
         self.trigger_url       = self._gen_trigger_url()
         self.attachment_color  = self._gen_attachment_color()
