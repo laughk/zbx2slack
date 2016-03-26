@@ -31,9 +31,9 @@ class testNoticeInfo(unittest.TestCase):
         self._args.trigger_severity  = '{TRIGGER.SEVERITY}'
         self._args.event_id          = '{EVENT.ID}'
         self._args.item              = [
-            '{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}',
-            '{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}',
-            '*UNKNOWN*|*UNKNOWN*|*UNKNOWN*|*UNKNOWN*'
+            '{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}|{ITEM.ID1}',
+            '{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}|{ITEM.ID2}',
+            '*UNKNOWN*|*UNKNOWN*|*UNKNOWN*|*UNKNOWN*|*UNKNOWN*'
         ]
 
     def setDown(self):
@@ -46,6 +46,27 @@ class testNoticeInfo(unittest.TestCase):
         expected = r'http://zabbix.example.com/zabbix/tr_events.php?triggerid={TRIGGER.ID}&eventid={EVENT.ID}'
         result = _noticeInfo._gen_trigger_url()
         self.assertEqual(result, expected)
+
+    def test__gen_items(self):
+        test_args = self._args
+        _noticeInfo = zbx2slack.noticeInfo(test_args)
+
+        expected = [
+            { 'hostname': '{HOST.NAME1}',
+              'name':     '{ITEM.NAME1}',
+              'key':      '{ITEM.KEY1}',
+              'value':    '{ITEM.VALUE1}',
+              'id':       '{ITEM.ID1}'
+            },
+            { 'hostname': '{HOST.NAME2}',
+              'name':     '{ITEM.NAME2}',
+              'key':      '{ITEM.KEY2}',
+              'value':    '{ITEM.VALUE2}',
+              'id':       '{ITEM.ID2}'
+            },
+        ]
+        result = _noticeInfo._gen_items()
+        self.assertSequenceEqual(result, expected)
 
     def test__gen_pretext(self):
         test_args = self._args
@@ -90,15 +111,15 @@ class testNoticeInfo(unittest.TestCase):
         expected = [
             {
                 'title': r'{HOST.NAME1} - **{ITEM.NAME1}**',
-                'value': r'"{ITEM.KEY1}" is "{ITEM.VALUE1}"'
+                'value': r'"{ITEM.KEY1}" is "{ITEM.VALUE1}" [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID1}|Graph>]'
             },
             {
                 'title': r'{HOST.NAME2} - **{ITEM.NAME2}**',
-                'value': r'"{ITEM.KEY2}" is "{ITEM.VALUE2}"'
+                'value': r'"{ITEM.KEY2}" is "{ITEM.VALUE2}" [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID2}|Graph>]'
             }
         ]
         result = _noticeInfo._gen_attachment_fields()
-        self.assertEqual(result, expected)
+        self.assertSequenceEqual(result, expected)
 
 
     def test__gen_payload(self):
@@ -116,18 +137,18 @@ class testNoticeInfo(unittest.TestCase):
                     'fields': [
                             {
                                 'title': r'{HOST.NAME1} - **{ITEM.NAME1}**',
-                                'value': r'"{ITEM.KEY1}" is "{ITEM.VALUE1}"'
+                                'value': r'"{ITEM.KEY1}" is "{ITEM.VALUE1}" [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID1}|Graph>]'
                             },
                             {   'title': r'{HOST.NAME2} - **{ITEM.NAME2}**',
-                                'value': r'"{ITEM.KEY2}" is "{ITEM.VALUE2}"'
+                                'value': r'"{ITEM.KEY2}" is "{ITEM.VALUE2}" [<http://zabbix.example.com/zabbix/history.php?action=showgraph&itemids%5B%5D={ITEM.ID2}|Graph>]'
                             }
-                        ]
+                        ],
                     }]
                 }
 
         result = _noticeInfo.payload.decode('utf-8')
         result_dict = json.loads(result)
-        self.assertDictEqual(result, expected)
+        self.assertSequenceEqual(result_dict, expected)
 
 
     def test_payload(self):
