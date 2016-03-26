@@ -71,9 +71,8 @@ In the WebUI of your zabbix server.
           --slack-incoming-webhook-url "https://hooks.slack.com/services/xxxxxxxxx/xxxxxxxxx/...." \
           --trigger-id "{TRIGGER.ID}" \
           --trigger-name "{TRIGGER.NAME}" \
-          --trigger-status "{TRIGER.STATUS}" \
+          --trigger-status "{TRIGGER.STATUS}" \
           --trigger-severity "{TRIGGER.SEVERITY}" \
-          --triger-url "{TRIGGER.URL}" \
           --event-id "{EVENT.ID}" \
           --item "{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}|{ITEM.ID1}" \
           --item "{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}|{ITEM.ID2}" \
