@@ -227,8 +227,8 @@ class noticeInfo(object):
                     **_item)
 
             _fileds.append({
-                    'title': '{hostname} - **{name}**'.format(**_item),
-                    'value': '"{key}" is "{value}" [<{0}|Graph>]'.format(_item_graph_url, **_item)
+                    'title': '{hostname} - {name}'.format(**_item),
+                    'value': ':mag_right: {key} | *{value}* [<{0}|Graph>]'.format(_item_graph_url, **_item)
                     })
 
         return _fileds
@@ -248,6 +248,9 @@ class noticeInfo(object):
                 'title': self.trigger_name,
                 'title_link': self.trigger_url,
                 'pretext': self.pretext,
+                'mrkdwn_in': [
+                    'title', 'pretext', 'fields'
+                ],
             }]
         })
 
