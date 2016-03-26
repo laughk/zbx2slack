@@ -194,7 +194,7 @@ class noticeInfo(object):
         '''
 
         if self.trigger_status == 'PROBLEM':
-            return ':boom: A problem occured '
+            return ':boom: A problem occurred '
         elif self.trigger_status == 'OK':
             return ':white_check_mark: A problem recovered :+1:'
         else:
@@ -215,8 +215,8 @@ class noticeInfo(object):
     def _gen_attachment_fields(self):
 
         '''
-        generate and return attchment color by the state.
-        ref. https://api.slack.com/docs/attachments#color
+        generate and return attchment fields for each items.
+        ref. https://api.slack.com/docs/attachments#fields
         '''
         _fileds = []
 
@@ -236,7 +236,7 @@ class noticeInfo(object):
 
     def _gen_payload(self):
         '''
-        generate and return attchment fields by the state.
+        generate and return payload for posting to slack.
         ref. https://api.slack.com/docs/attachments#fields
         '''
 
