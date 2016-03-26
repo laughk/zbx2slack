@@ -116,7 +116,8 @@ class noticeInfo(object):
         self.trigger_status    = args.trigger_status
         self.trigger_severity  = args.trigger_severity
         self.event_id          = args.event_id
-        self._items            = args.item
+        self._item_text_list   = args.item
+        self.items             = self._gen_items
 
         self.trigger_url       = self._gen_trigger_url()
         self.attachment_color  = self._gen_attachment_color()
@@ -138,6 +139,55 @@ class noticeInfo(object):
                 self.trigger_id,
                 self.event_id)
         return _trigger_url
+
+    def _gen_items(self):
+
+        """
+        generate item dictionary
+
+        from:
+
+        [
+          '{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}|{ITEM.ID1}', 
+          '{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}|{ITEM.ID2}', 
+        ]
+
+        to:
+
+        [
+            { 'hostname': '{HOST.NAME1}',
+              'name':     '{ITEM.NAME1}',
+              'key':      '{ITEM.KEY1}',
+              'value':    '{ITEM.VALUE1}',
+              'id':       '{ITEM.ID1}'
+            },
+
+            { 'hostname': '{HOST.NAME2}',
+              'name':     '{ITEM.NAME2}',
+              'key':      '{ITEM.KEY2}',
+              'value':    '{ITEM.VALUE2}',
+              'id':       '{ITEM.ID2}'
+            },
+        ]
+
+        """
+        _items = [
+            {
+              'hostname': i[0],
+              'name':     i[1],
+              'key':      i[2],
+              'value':    i[3],
+              'id':       i[4]
+            }
+            for i in [
+                item_text.split('|')
+                for item_text in self._item_text_list
+                    if not r'*UNKNOWN*' in item_text
+            ]
+        ]
+
+        return _items
+
 
     def _gen_pretext(self):
         '''
