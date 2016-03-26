@@ -8,8 +8,8 @@ python:
 install:
   # for python2.6
   #    scripts
-  - if [[ $(python -V | awk '{print $NF}') =~ ^2.6 ]]; then pip install argparse; fi
+  - if [[ $(python -V 2>&1 | awk '{print $NF}') =~ ^2.6 ]]; then pip install argparse; fi
   #    unittest
-  - if [[ $(python -V | awk '{print $NF}') =~ ^2.6 ]]; then pip install datadiff; fi
+  - if [[ $(python -V 2>&1 | awk '{print $NF}') =~ ^2.6 ]]; then pip install datadiff; fi
 
 script: nosetests -v
