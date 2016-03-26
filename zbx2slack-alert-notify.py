@@ -75,9 +75,9 @@ In the WebUI of your zabbix server.
           --trigger-severity "{TRIGGER.SEVERITY}" \
           --triger-url "{TRIGGER.URL}" \
           --event-id "{EVENT.ID}" \
-          --item "{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}" \
-          --item "{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}" \
-          --item "{HOST.NAME3}|{ITEM.NAME3}|{ITEM.KEY3}|{ITEM.VALUE3}"
+          --item "{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}|{ITEM.ID1}" \
+          --item "{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}|{ITEM.ID2}" \
+          --item "{HOST.NAME3}|{ITEM.NAME3}|{ITEM.KEY3}|{ITEM.VALUE3}|{ITEM.ID3}"
 
 
 LICENSE
@@ -221,16 +221,15 @@ class noticeInfo(object):
         '''
         _fileds = []
 
-        for _item in self._items:
+        for _item in self.items:
 
-            _item_list = _item.split('|')
-
-            if _item_list[0] == r'*UNKNOWN*':
-                continue
+            _item_graph_url = '{0}/history.php?action=showgraph&itemids%5B%5D={id}'.format(
+                    self.zabbix_server_url,
+                    **_item)
 
             _fileds.append({
-                    'title': '{0} - **{1}**'.format(*_item_list),
-                    'value': '"{2}" is "{3}"'.format(*_item_list)
+                    'title': '{hostname} - **{name}**'.format(**_item),
+                    'value': '"{key}" is "{value}" [<{0}|Graph>]'.format(_item_graph_url, **_item)
                     })
 
         return _fileds
@@ -315,9 +314,9 @@ def main():
             --trigger-status "{TRIGGER.STATUS}" \
             --trigger-severity "{TRIGGER.SEVERITY}" \
             --event-id "{EVENT.ID}" \
-            --item "{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}" \
-            --item "{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}" \
-            --item "{HOST.NAME3}|{ITEM.NAME3}|{ITEM.KEY3}|{ITEM.VALUE3}"
+            --item "{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}|{ITEM.ID1}" \
+            --item "{HOST.NAME2}|{ITEM.NAME2}|{ITEM.KEY2}|{ITEM.VALUE2}|{ITEM.ID2}" \
+            --item "{HOST.NAME3}|{ITEM.NAME3}|{ITEM.KEY3}|{ITEM.VALUE3}|{ITEM.ID3}"
 
     {{{
 
@@ -350,7 +349,7 @@ def main():
             type=int, help='Set Zabbix Macro "{EVENT.ID}"')
     parser.add_argument('--item', action='append',
             type=str, help='Set Zabbix Macro formated by'
-                           '"{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}"')
+                           '"{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}|{ITEM.ID1}"')
 
     parser.add_argument('--version', action='version',
             version=script_versoin())
