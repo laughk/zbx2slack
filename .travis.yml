@@ -7,6 +7,6 @@ python:
   - '3.5'
 install:
   # for python2.6
-  - [[ $(python -V | awk '{print $NF}')$ =~ ^2.6 ]] && pip install argparse
+  - if [[ $(python -V | awk '{print $NF}')$ =~ ^2.6 ]]; then pip install argparse; fi
 
 script: nosetest -v
