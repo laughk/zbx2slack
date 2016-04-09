@@ -9,7 +9,7 @@ except ImportError:
     from unittest import TestCase
     TestCase.maxDiff = None
 
-zbx2slack = __import__('zbx2slack-alert-notify')
+import zbx2slack
 
 
 class argClass:
