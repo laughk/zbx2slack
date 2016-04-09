@@ -1,4 +1,4 @@
-zbx2slack-alert-notify.py
+zbx2slack
 ================================
 
 .. image:: https://travis-ci.org/laughk/zbx2slack-alert-notify.svg?branch=master
