@@ -1,4 +1,4 @@
-zbx2slack-alert-notify.py
+zbx2slack
 ================================
 
 .. image:: https://travis-ci.org/laughk/zbx2slack-alert-notify.svg?branch=master
@@ -30,15 +30,14 @@ In your zabbix server,
 
 .. sourcecode:: sh
 
-    $ wget https://raw.githubusercontent.com/laughk/zbx2slack-alert-notify/master/zbx2slack-alert-notify.py
-    $ chmod +x zbx2slack-alert-notify.py
+    $ pip install zbx2slack
 
-or if you can use ``git``,
+or you can download directly using ``wget``, ``curl``.
 
 .. sourcecode:: sh
 
-    $ git clone https://github.com/laughk/zbx2slack-alert-notify.git
-    $ chmod +x zbx2slack-alert-notify/zbx2slack-alert-notify.git
+    $ wget https://raw.githubusercontent.com/laughk/zbx2slack/master/zbx2slack.py
+    $ chmod +x zbx2slack.py
 
 
 (if necessary, use ``sudo``. )
@@ -52,6 +51,8 @@ put file and add mode to execute.
 
 Usage
 -----------------------
+
+get incoming-webhook url for your slack. from `incoming webhook integration <https://my.slack.com/services/new/incoming-webhook>`_.
 
 
 In the WebUI of your zabbix server.
@@ -70,9 +71,11 @@ In the WebUI of your zabbix server.
     - Execute on     : Zabbix server
     - Commands:
 
+      (if directly download, replace ``zbx2slack`` to ``zbx2slack.py``.)
+
       .. sourcecode:: sh
 
-        /path/to/zbx2slack-alert-notify.py \
+        zbx2slack \
           --zabbix-server-url "http://zabbix.example.com/zabbix" \
           --slack-botname "Zabbix Alert" \
           --slack-incoming-webhook-url "https://hooks.slack.com/services/xxxxxxxxx/xxxxxxxxx/...." \
