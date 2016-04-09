@@ -12,6 +12,9 @@ setup(
         [console_scripts]
         zbx2slack=zbx2slack:main
     ''',
+    py_modules=[
+        'zbx2slack'
+    ],
     url='https://github.com/laughk/zbx2slack',
     author='Kei Iwasaki',
     author_email='me@laughk.org',
