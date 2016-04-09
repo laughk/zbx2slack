@@ -104,6 +104,9 @@ except ImportError:
     '''for python2.x'''
     import urllib2 as request
 
+__version__ = '0.0.1'
+__scriptname__ = os.path.basename(__file__).replace('.py','')
+
 
 class noticeInfo(object):
     def __init__(self, args):
@@ -274,10 +277,6 @@ def alert_to_slack(payload, slack_incoming_webhook):
     request.urlopen(req)
 
 
-def script_versoin():
-    return '{0} 0.0.1'.format(sys.argv[0])
-
-
 def main():
 
 
@@ -354,7 +353,7 @@ def main():
                            '"{HOST.NAME1}|{ITEM.NAME1}|{ITEM.KEY1}|{ITEM.VALUE1}|{ITEM.ID1}"')
 
     parser.add_argument('--version', action='version',
-            version=script_versoin())
+            version='{0} {1}'.format(__scriptname__, __version__))
 
     args = parser.parse_args()
 
