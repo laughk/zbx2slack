@@ -33,7 +33,7 @@ except ImportError:
     '''for python2.x'''
     import urllib2 as request
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __scriptname__ = os.path.basename(__file__).replace('.py','')
 
 
