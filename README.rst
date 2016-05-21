@@ -1,8 +1,8 @@
 zbx2slack
 ================================
 
-.. image:: https://travis-ci.org/laughk/zbx2slack-alert-notify.svg?branch=master
-    :target: https://travis-ci.org/laughk/zbx2slack-alert-notify
+.. image:: https://travis-ci.org/laughk/zbx2slack.svg?branch=master
+    :target: https://travis-ci.org/laughk/zbx2slack
 
 
 Zabbix Alert Notification Script for Slack. by pure python.
